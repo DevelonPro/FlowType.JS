@@ -8,41 +8,49 @@
 * http://choosealicense.com/licenses/mit
 *
 * Thanks to Giovanni Difeterici (http://www.gdifeterici.com/)
+*
+* Forked by DevelonPro and converted to pure JS
 */
 
-(function($) {
-   $.fn.flowtype = function(options) {
+class FlowType {
+   constructor(element, options = {}) {
+      this.element = element
+      this.options = { ...this.defaultOptions, ...options }
+      this.apply()
+   }
 
-// Establish default settings/variables
-// ====================================
-      var settings = $.extend({
-         maximum   : 9999,
-         minimum   : 1,
-         maxFont   : 9999,
-         minFont   : 1,
-         fontRatio : 35
-      }, options),
+   /**
+    * Establish default settings/variables
+    */
+   defaultOptions: {
+      maximum   : 9999,
+      minimum   : 1,
+      maxFont   : 9999,
+      minFont   : 1,
+      fontRatio : 35
+   }
 
-// Do the magic math
-// =================
-      changes = function(el) {
-         var $el = $(el),
-            elw = $el.width(),
-            width = elw > settings.maximum ? settings.maximum : elw < settings.minimum ? settings.minimum : elw,
-            fontBase = width / settings.fontRatio,
-            fontSize = fontBase > settings.maxFont ? settings.maxFont : fontBase < settings.minFont ? settings.minFont : fontBase;
-         $el.css('font-size', fontSize + 'px');
-      };
+   /**
+    * Do the magic math
+    */
+   changes () {
+      const elw = this.element.offsetWidth,
+      width = elw > settings.maximum ? settings.maximum : elw < settings.minimum ? settings.minimum : elw,
+      fontBase = width / settings.fontRatio,
+      fontSize = fontBase > settings.maxFont ? settings.maxFont : fontBase < settings.minFont ? settings.minFont : fontBase;
+      this.element.style.fontSize = (fontSize + 'px')
+   }
 
-// Make the magic visible
-// ======================
-      return this.each(function() {
-      // Context for resize callback
-         var that = this;
-      // Make changes upon resize
-         $(window).resize(function(){changes(that);});
-      // Set changes on load
-         changes(this);
-      });
-   };
-}(jQuery));
+   /**
+    * Applies on load/resize
+    */
+   apply () {
+      if (this.element) {
+         this.changes()
+         window.addEventListener('resize', this.changes)
+         window.addEventListener('load', this.changes)
+      }
+   }
+}
+
+export default FlowType
