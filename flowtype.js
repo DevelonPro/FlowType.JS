@@ -60,5 +60,3 @@ export default class FlowType {
       }
    }
 }
-
-export default FlowType
