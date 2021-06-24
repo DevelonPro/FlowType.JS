@@ -14,7 +14,7 @@
 
 class FlowType {
    constructor(element, options = {}) {
-      this.element = element
+      this.element = document.querySelectorAll(element)
       this.options = { ...this.defaultOptions, ...options }
       this.apply()
    }
@@ -33,22 +33,24 @@ class FlowType {
    /**
     * Do the magic math
     */
-   changes () {
-      const elw = this.element.offsetWidth,
+   changes (element) {
+      const elw = element.offsetWidth,
       width = elw > settings.maximum ? settings.maximum : elw < settings.minimum ? settings.minimum : elw,
       fontBase = width / settings.fontRatio,
       fontSize = fontBase > settings.maxFont ? settings.maxFont : fontBase < settings.minFont ? settings.minFont : fontBase;
-      this.element.style.fontSize = (fontSize + 'px')
+      element.style.fontSize = (fontSize + 'px')
    }
 
    /**
     * Applies on load/resize
     */
    apply () {
-      if (this.element) {
-         this.changes()
-         window.addEventListener('resize', this.changes)
-         window.addEventListener('load', this.changes)
+      if (this.element.length) {
+         this.element.forEach(element => {
+            this.changes(element)
+            window.addEventListener('resize', () => this.changes(element))
+            window.addEventListener('load', () => this.changes(element))
+         })
       }
    }
 }
