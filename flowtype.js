@@ -15,7 +15,7 @@
 class FlowType {
    constructor(element, options = {}) {
       this.element = document.querySelectorAll(element)
-      this.options = { ...this.defaultOptions, ...options }
+      this.options = { ...this.defaultOptions(), ...options }
       this.apply()
    }
 
