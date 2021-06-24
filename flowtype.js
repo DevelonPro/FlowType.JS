@@ -15,7 +15,7 @@
 class FlowType {
    constructor(element, options = {}) {
       this.element = (
-         typeof element == 'string' ?
+         typeof element === 'string' ?
          document.querySelectorAll(element) :
          [element]
       )
