@@ -12,7 +12,7 @@
 * Forked by DevelonPro and converted to pure JS
 */
 
-class FlowType {
+export default class FlowType {
    constructor(element, options = {}) {
       this.element = (
          typeof element === 'string' ?
