@@ -1,0 +1,19 @@
+{
+  "name": "flowtype.js",
+  "version": "1.0.0",
+  "description": "Responsive web typography at its finest: font-size ~~and line-height~~ based on element width.",
+  "main": "flowtype.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevelonPro/FlowType.JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevelonPro/FlowType.JS/issues"
+  },
+  "homepage": "https://github.com/DevelonPro/FlowType.JS#readme"
+}
