@@ -22,12 +22,14 @@ class FlowType {
    /**
     * Establish default settings/variables
     */
-   defaultOptions: {
-      maximum   : 9999,
-      minimum   : 1,
-      maxFont   : 9999,
-      minFont   : 1,
-      fontRatio : 35
+   defaultOptions() {
+      return {
+         maximum   : 9999,
+         minimum   : 1,
+         maxFont   : 9999,
+         minFont   : 1,
+         fontRatio : 35
+      }
    }
 
    /**
