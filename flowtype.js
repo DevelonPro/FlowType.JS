@@ -14,7 +14,11 @@
 
 class FlowType {
    constructor(element, options = {}) {
-      this.element = document.querySelectorAll(element)
+      this.element = (
+         typeof element == 'string' ?
+         document.querySelectorAll(element) :
+         [element]
+      )
       this.options = { ...this.defaultOptions(), ...options }
       this.apply()
    }
